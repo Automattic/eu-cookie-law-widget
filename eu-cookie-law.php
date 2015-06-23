@@ -29,6 +29,7 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 
 		$this->defaults = array(
 			'hide' => 'button',
+			'hidetime' => 30,
 			'text' => 'default',
 			'customtext' => '',
 			'policyurl' => 'default',

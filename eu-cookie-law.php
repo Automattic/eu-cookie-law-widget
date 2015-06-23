@@ -29,13 +29,15 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 
 		$this->defaults = array(
 			'hide' => 'button',
-			'hidetime' => 30,
+			'hide-timeout' => 30,
 			'text' => 'default',
 			'customtext' => '',
-			'policyurl' => 'default',
-			'custompolicyurl' => '',
-			'policylinktext' => __( 'Our Cookie Policy' ),
-			'button' => __( 'Close and accept' ),
+			'policy-url' => 'default',
+			'default-policy-url' => 'https://en.support.wordpress.com/cookies',
+			'custom-policy-url' => '',
+			'policy-link-text' => __( 'Our Cookie Policy', 'eucookielaw' ),
+			'button' => __( 'Close and accept', 'eucookielaw' ),
+			'default-text' => __('Privacy & Cookies: This site uses cookies from WordPress.com and selected partners. By browsing you consent to their use.', 'eucookielaw' ),
 		);
 	}
 
@@ -50,6 +52,7 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 	public function footer() {
 		$blog_url = get_bloginfo( 'url' );
 		$instance = $this->instance;
+		$defaults = $this->defaults;
 		$cookie_name = self::$cookie_name;
 		$cookie_validity = self::$cookie_validity;
 
@@ -68,9 +71,9 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 			$instance['hide'] = $new_instance['hide'];
 		}
 
-		if ( isset( $new_instance['hidetime'] ) ) {
+		if ( isset( $new_instance['hide-timeout'] ) ) {
 			// time can be a value between 5 and 1000 seconds
-			$instance['hidetime'] = min( 1000, max( 5, intval( $new_instance['hidetime'] ) ) );
+			$instance['hide-timeout'] = min( 1000, max( 5, intval( $new_instance['hide-timeout'] ) ) );
 		}
 
 		if ( in_array( $new_instance['text'], array( 'default', 'custom' ) ) ) {
@@ -87,23 +90,23 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 			$instance['policyurl'] = $new_instance['policyurl'];
 		}
 
-		if ( isset( $new_instance['custompolicyurl'] ) ) {
-			$instance['custompolicyurl'] = esc_url( $new_instance['custompolicyurl'], array( 'http', 'https' ) );
+		if ( isset( $new_instance['custom-policy-url'] ) ) {
+			$instance['custom-policy-url'] = esc_url( $new_instance['custom-policy-url'], array( 'http', 'https' ) );
 
-			if ( strlen( $instance['custompolicyurl'] ) < 10 ) {
-				unset( $instance['custompolicyurl'] );
+			if ( strlen( $instance['custom-policy-url'] ) < 10 ) {
+				unset( $instance['custom-policy-url'] );
 				$instance['policyurl'] = 'default';
 			}
 		} else {
 			$instance['policyurl'] = 'default';
 		}
 
-		if ( isset( $new_instance['policylinktext'] ) ) {
-			$instance['policylinktext'] = trim( mb_substr( $new_instance['policylinktext'], 0, 100 ) );
+		if ( isset( $new_instance['policy-link-text'] ) ) {
+			$instance['policy-link-text'] = trim( mb_substr( $new_instance['policy-link-text'], 0, 100 ) );
 		}
 
-		if ( empty( $instance['policylinktext'] ) || $instance['button'] == $this->defaults['policylinktext'] ) {
-			unset( $instance['policylinktext'] );
+		if ( empty( $instance['policy-link-text'] ) || $instance['button'] == $this->defaults['policy-link-text'] ) {
+			unset( $instance['policy-link-text'] );
 		}
 
 		if ( isset( $new_instance['button'] ) ) {
@@ -114,10 +117,8 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 			unset( $instance['button'] );
 		}
 
-		if ( isset( $new_instance['resetcookie'] ) && $new_instance['resetcookie'] ) {
-			// show the banner again
-			setcookie( self::$cookie_name, '', time() - 86400, '/' );
-		}
+		// show the banner again if a setting has been changed
+		setcookie( self::$cookie_name, '', time() - 86400, '/' );
 
 		return $instance;
 	}

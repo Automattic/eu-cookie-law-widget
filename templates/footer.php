@@ -1,22 +1,22 @@
-<div id="eu-cookie-law" class="hide-on-<?php echo esc_attr( $instance['hide'] ); ?>" data-hidetime="<?php echo intval( $instance['hidetime'] ) ; ?>">
+<div id="eu-cookie-law" class="hide-on-<?php echo esc_attr( $instance['hide'] ); ?>" data-hide-timeout="<?php echo intval( $instance['hide-timeout'] ) ; ?>">
 	<form action="<?php echo esc_attr( $blog_url ); ?>" method="post">
 		<div class="text">
 			<?php if ( $instance['text'] == 'default' || empty( $instance['customtext'] ) ) {
-				_e('Privacy & Cookies: This site uses cookies from WordPress.com and selected partners. By browsing you consent to their use.' );
+				echo $defaults[ 'default-text' ];
 
 				if ( $instance['hide'] === 'time' ) {
 					echo ' ';
-					printf( _n( 'This message will disappear after %s second.', 'This message will disappear after %s seconds.', $instance['hidetime'] ), $instance['hidetime'] );
+					printf( _n( 'This message will disappear after %s second.', 'This message will disappear after %s seconds.', $instance['hide-timeout'], 'eucookielaw' ), $instance['hide-timeout'] );
 				}
 				echo ' ';
-				_e( 'To find out more, as well as how to remove or block these, see here:' );
+				_e( 'To find out more, as well as how to remove or block these, see here:', 'eucookielaw' );
 				echo ' ';
 			} else {
 				echo esc_html( $instance['customtext'] ), ' ';
 			}
 
-			?><a href="<?php echo esc_attr( empty( $instance['url'] ) ? 'https://en.support.wordpress.com/cookies' : $instance['url'] ); ?>"><?php
-				echo esc_html( $instance['policylinktext'] );
+			?><a href="<?php echo esc_attr( empty( $instance['policy-url'] ) ? $defaults['default-policy-url'] : $instance['policy-url'] ); ?>"><?php
+				echo esc_html( $instance['policy-link-text'] );
 			?></a>
 
 			<?php wp_nonce_field( 'eucookielaw' ); ?>
@@ -44,7 +44,7 @@ jQuery(function( $ ) {
 		};
 		$( window ).on( 'scroll', scrollFunction );
 	} else if ( overlay.hasClass( 'hide-on-time' ) ) {
-		setTimeout( accept, overlay.data( 'hidetime' ) * 1000 );
+		setTimeout( accept, overlay.data( 'hide-timeout' ) * 1000 );
 	}
 
 	var accepted = false;

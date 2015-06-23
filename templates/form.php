@@ -8,7 +8,7 @@
 			<label><input type="radio" name="<?php echo $this->get_field_name( 'hide' ); ?>" value="scroll" <?php checked( $instance['hide'], 'scroll' ); ?> /> <?php _e( 'after the user scrolls the page', 'eucookielaw' ); ?></label>
 		</li>
 		<li>
-			<label><input type="radio" name="<?php echo $this->get_field_name( 'hide' ); ?>" value="time" <?php checked( $instance['hide'], 'time' ); ?> /> <?php _e( 'after this amount of time:', 'eucookielaw' ); ?></label> <input type="number" name="<?php echo $this->get_field_name( 'hide-timeout' ); ?>" value="<?php echo esc_attr( $instance['hide-timeout'] ); ?>" style="width: 3em" /> <?php _e( 'seconds', 'eucookielaw' ); ?>
+			<label><input type="radio" name="<?php echo $this->get_field_name( 'hide' ); ?>" value="time" <?php checked( $instance['hide'], 'time' ); ?> /> <?php _e( 'after this amount of time:', 'eucookielaw' ); ?></label> <input type="number" name="<?php echo $this->get_field_name( 'hide-timeout' ); ?>" value="<?php echo esc_attr( $instance['hide-timeout'] ); ?>" min="3" max="1000" style="width: 3em" /> <?php _e( 'seconds', 'eucookielaw' ); ?>
 		</li>
 	</ul>
 </p>

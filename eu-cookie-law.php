@@ -73,7 +73,7 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 
 		if ( isset( $new_instance['hide-timeout'] ) ) {
 			// time can be a value between 5 and 1000 seconds
-			$instance['hide-timeout'] = min( 1000, max( 5, intval( $new_instance['hide-timeout'] ) ) );
+			$instance['hide-timeout'] = min( 1000, max( 3, intval( $new_instance['hide-timeout'] ) ) );
 		}
 
 		if ( in_array( $new_instance['text'], array( 'default', 'custom' ) ) ) {

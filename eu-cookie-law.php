@@ -103,7 +103,8 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 	<strong><?php _e( 'Button text' ); ?></strong>
 	<label><input type="text" class="widefat" name="<?php echo $this->get_field_name( 'button' ); ?>"value="<?php echo esc_attr( $instance['button'] ); ?>" /></label>
 </p>
-
+<hr />
+<p class="small"><?php _e( 'It is your own responsibility to ensure your site complies with the relevant laws.' ); ?> <a href="https://en.support.wordpress.com/cookies-widget"><?php _e( 'Click here for more information' ); ?></a></p>
 		<?php
 	}
 
@@ -136,6 +137,7 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 			$instance['custompolicyurl'] = esc_url( $new_instance['custompolicyurl'], array( 'http', 'https' ) );
 
 			if ( strlen( $instance['custompolicyurl'] ) < 10 ) {
+				unset( $instance['custompolicyurl'] );
 				$instance['policyurl'] = 'default';
 			}
 		} else {

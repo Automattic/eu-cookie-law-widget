@@ -46,4 +46,4 @@
 	<label><input type="text" class="widefat" name="<?php echo $this->get_field_name( 'button' ); ?>"value="<?php echo esc_attr( $instance['button'] ); ?>" /></label>
 </p>
 <hr />
-<p class="small"><?php _e( 'It is your own responsibility to ensure your site complies with the relevant laws.' ); ?> <a href="https://en.support.wordpress.com/cookies-widget"><?php _e( 'Click here for more information' ); ?></a></p>
+<p class="small"><?php _e( 'It is your own responsibility to ensure that your site complies with the relevant laws.' ); ?> <a href="https://en.support.wordpress.com/cookies-widget"><?php _e( 'Click here for more information' ); ?></a></p>

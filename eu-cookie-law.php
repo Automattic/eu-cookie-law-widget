@@ -33,16 +33,30 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 
 	public function footer() {
 
-		echo '<div style="position: fixed; bottom: 0; left: 0; right: 0; height: 195px; background-color: #fff">';
-		echo '<img src="https://dotcom.files.wordpress.com/2015/06/cookie2.gif?w=520&h=390" />';
-		echo '</div>';
+		echo <<<FOOTER
+<div id="eu-cookie-law" style="position: fixed; bottom: 0; left: 0; right: 0; height: 195px; background-color: #fff">
+	<img src="https://dotcom.files.wordpress.com/2015/06/cookie2.gif?w=520&h=390" align="middle" /> <button class="dismiss">Dismiss</button>
+</div>
+<script type="text/javascript">
+jQuery( '#eu-cookie-law button.dismiss').on( 'click', function() {
+
+});
+</script>
+FOOTER;
 	}
 
 
 	public function form( $instance ) {
 		$instance = wp_parse_args( $instance, $this->defaults );
+		echo <<<SETTINGS
+<label>Banner text</label><br /><textarea name="text"></textarea><br />
+<br />
+Hide the cookie banner<br />
+<label><input type="radio" name="hide" value="button" checked="checked" /> after the user clicks the dismiss button</label><br />
+<label><input type="radio" name="hide" value="scroll" /> after the user scrolls the page</label><br />
+<label><input type="radio" name="hide" value="time" /> after this time: <input type="text" name="hidetime" /></label><br />
 
-		echo 'Settings';
+SETTINGS;
 	}
 
 	public function update( $new_instance ) {

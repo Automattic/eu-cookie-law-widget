@@ -14,6 +14,8 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 
 	public static $cookie_name = 'eucookielaw';
 
+	public static $instance;
+
 	public $defaults = array();
 
 	function __construct() {
@@ -26,6 +28,13 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 			array()
 		);
 
+		add_action( 'widgets_init', array( $this, 'add_consent_cookie' ) );
+
+		self::$instance = $this;
+	}
+
+	static public function get_nonce_name() {
+		return 'eucookielaw_dismiss_' . get_current_blog_id();
 	}
 
 	public function widget( $args, $instance ) {
@@ -34,17 +43,7 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 	}
 
 	public function footer() {
-
-		echo <<<FOOTER
-<div id="eu-cookie-law" style="position: fixed; bottom: 0; left: 0; right: 0; height: 195px; background-color: #fff">
-	<img src="https://dotcom.files.wordpress.com/2015/06/cookie2.gif?w=520&h=390" align="middle" /> <button class="dismiss">Dismiss</button>
-</div>
-<script type="text/javascript">
-jQuery( '#eu-cookie-law button.dismiss').on( 'click', function() {
-
-});
-</script>
-FOOTER;
+		require( dirname( __FILE__ ) . '/templates/footer.php' );
 	}
 
 
@@ -66,6 +65,21 @@ SETTINGS;
 
 		return $instance;
 	}
+
+	public static function add_consent_cookie() {
+		if (
+			! isset( $_POST[ self::get_nonce_name() ] )
+			|| ! wp_verify_nonce(
+				$_POST[ self::get_nonce_name() ],
+				'eucookielaw'
+			)
+		) {
+			return;
+		}
+
+		setcookie( self::$cookie_name, current_time( 'timestamp' ), time() + (10 * 365 * 24 * 60 * 60), '/' );
+		wp_safe_redirect( $_POST['redirect_url'] );
+	}
 }
 
 // Only load the widget if we're inside the admin or the user has not given
@@ -74,4 +88,6 @@ if ( is_admin() || ! isset( $_COOKIE[ EU_Cookie_Law_Widget::$cookie_name ] ) ) {
 	add_action( 'widgets_init', function() {
 		register_widget( 'EU_Cookie_Law_Widget' );
 	});
+
+	add_action( 'init', array( 'EU_Cookie_Law_Widget', 'add_consent_cookie' ) );
 }

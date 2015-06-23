@@ -39,11 +39,15 @@
 </p>
 <p>
 	<strong><?php _e( 'Policy Link Text' ); ?></strong>
-	<label><input type="text" class="widefat" name="<?php echo $this->get_field_name( 'policylinktext' ); ?>"value="<?php echo esc_attr( $instance['policylinktext'] ); ?>" />
+	<label><input type="text" class="widefat" name="<?php echo $this->get_field_name( 'policylinktext' ); ?>" value="<?php echo esc_attr( $instance['policylinktext'] ); ?>" />
 <hr />
 <p>
 	<strong><?php _e( 'Button text' ); ?></strong>
-	<label><input type="text" class="widefat" name="<?php echo $this->get_field_name( 'button' ); ?>"value="<?php echo esc_attr( $instance['button'] ); ?>" /></label>
+	<label><input type="text" class="widefat" name="<?php echo $this->get_field_name( 'button' ); ?>" value="<?php echo esc_attr( $instance['button'] ); ?>" /></label>
+</p>
+<hr />
+<p>
+	<label><input type="checkbox" name="<?php echo $this->get_field_name( 'resetcookie' ); ?>" value="1" /> <?php _e( 'Forget that I had acknowledged the banner and show it again' ); ?></label>
 </p>
 <hr />
 <p class="small"><?php _e( 'It is your own responsibility to ensure that your site complies with the relevant laws.' ); ?> <a href="https://en.support.wordpress.com/cookies-widget"><?php _e( 'Click here for more information' ); ?></a></p>

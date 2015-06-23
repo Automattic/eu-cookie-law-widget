@@ -12,6 +12,8 @@ Author URI:   http://automattic.com/
 
 class EU_Cookie_Law_Widget extends WP_Widget {
 
+	public static $cookie_name = 'eucookielaw';
+
 	public $defaults = array();
 
 	function __construct() {
@@ -66,6 +68,10 @@ SETTINGS;
 	}
 }
 
-add_action( 'widgets_init', function() {
-	register_widget( 'EU_Cookie_Law_Widget' );
-});
+// Only load the widget if we're inside the admin or the user has not given
+// their consent to accept cookies
+if ( is_admin() || ! isset( $_COOKIE[ EU_Cookie_Law_Widget::$cookie_name ] ) ) {
+	add_action( 'widgets_init', function() {
+		register_widget( 'EU_Cookie_Law_Widget' );
+	});
+}

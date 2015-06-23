@@ -30,10 +30,10 @@
 	<strong><?php _e( 'Policy URL', 'eucookielaw' ); ?></strong>
 	<ul>
 		<li>
-			<label><input type="radio" name="<?php echo $this->get_field_name( 'policyurl' ); ?>" value="default" <?php checked( $instance['policyurl'], 'default' ); ?> /> <?php _e( 'Default' ); ?></label>
+			<label><input type="radio" name="<?php echo $this->get_field_name( 'policy-url' ); ?>" value="default" <?php checked( $instance['policy-url'], 'default' ); ?> /> <?php _e( 'Default' ); ?></label>
 		</li>
 		<li>
-			<label><input type="radio" name="<?php echo $this->get_field_name( 'policyurl' ); ?>" value="custom" <?php checked( $instance['policyurl'], 'custom' ); ?> /> <?php _e( 'Custom:' ); ?></label> <input type="text" class="widefat" name="<?php echo $this->get_field_name( 'custom-policy-url' ); ?>" placeholder="<?php echo esc_attr( $instance['default-policy-url'] ); ?>" style="margin-top: .5em" value="<?php echo esc_attr( $instance['custom-policy-url'] ); ?>" />
+			<label><input type="radio" name="<?php echo $this->get_field_name( 'policy-url' ); ?>" value="custom" <?php checked( $instance['policy-url'], 'custom' ); ?> /> <?php _e( 'Custom:' ); ?></label> <input type="text" class="widefat" name="<?php echo $this->get_field_name( 'custom-policy-url' ); ?>" placeholder="<?php echo esc_attr( $instance['default-policy-url'] ); ?>" style="margin-top: .5em" value="<?php echo esc_attr( $instance['custom-policy-url'] ); ?>" />
 		</li>
 	</ul>
 </p>

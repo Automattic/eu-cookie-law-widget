@@ -86,8 +86,8 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 			$instance['text'] = 'default';
 		}
 
-		if ( in_array( $new_instance['policyurl'], array( 'default', 'custom' ) ) ) {
-			$instance['policyurl'] = $new_instance['policyurl'];
+		if ( in_array( $new_instance['policy-url'], array( 'default', 'custom' ) ) ) {
+			$instance['policy-url'] = $new_instance['policy-url'];
 		}
 
 		if ( isset( $new_instance['custom-policy-url'] ) ) {
@@ -95,10 +95,10 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 
 			if ( strlen( $instance['custom-policy-url'] ) < 10 ) {
 				unset( $instance['custom-policy-url'] );
-				$instance['policyurl'] = 'default';
+				$instance['policy-url'] = 'default';
 			}
 		} else {
-			$instance['policyurl'] = 'default';
+			$instance['policy-url'] = 'default';
 		}
 
 		if ( isset( $new_instance['policy-link-text'] ) ) {

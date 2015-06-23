@@ -15,7 +15,7 @@
 				echo esc_html( $instance['customtext'] ), ' ';
 			}
 
-			?><a href="<?php echo esc_attr( empty( $instance['policy-url'] ) ? $defaults['default-policy-url'] : $instance['policy-url'] ); ?>"><?php
+			?><a href="<?php echo esc_attr( $instance['policy-url'] == 'default' || empty( $instance['custom-policy-url'] ) ? $defaults['default-policy-url'] : $instance['custom-policy-url'] ); ?>"><?php
 				echo esc_html( $instance['policy-link-text'] );
 			?></a>
 

@@ -37,10 +37,6 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 		);
 	}
 
-	static public function get_nonce_name() {
-		return 'eucookielaw_dismiss_' . get_current_blog_id();
-	}
-
 	public function widget( $args, $instance ) {
 		$this->instance = wp_parse_args( $instance, $this->defaults );
 
@@ -115,18 +111,27 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 		return $instance;
 	}
 
+	public static function ajax_add_consent_cookie() {
+		check_ajax_referer( 'eucookielaw' );
+		self::add_consent_cookie();
+	}
+
 	public static function add_consent_cookie() {
 		if (
-			! isset( $_POST[ self::get_nonce_name() ] )
-			|| ! wp_verify_nonce(
-				$_POST[ self::get_nonce_name() ],
-				'eucookielaw'
-			)
+			! isset( $_POST['eucookielaw'] )
+			|| 'accept' !== $_POST['eucookielaw']
 		) {
 			return;
 		}
 
-		setcookie( self::$cookie_name, current_time( 'timestamp' ), time() + (10 * 365 * 24 * 60 * 60), '/' );
+		if (
+			! isset( $_POST[ '_wpnonce' ] )
+			|| ! wp_verify_nonce( $_POST[ '_wpnonce' ], 'eucookielaw' )
+		) {
+			return;
+		}
+
+		setcookie( self::$cookie_name, current_time( 'timestamp' ), time() + 2592000, '/' ); // 30 days default
 		wp_safe_redirect( $_POST['redirect_url'] );
 	}
 }
@@ -139,4 +144,6 @@ if ( is_admin() || ! isset( $_COOKIE[ EU_Cookie_Law_Widget::$cookie_name ] ) ) {
 	});
 
 	add_action( 'init', array( 'EU_Cookie_Law_Widget', 'add_consent_cookie' ) );
+	add_action( 'wp_ajax_eucookielaw_accept', array( 'EU_Cookie_Law_Widget', 'ajax_add_consent_cookie' ) );
+
 }

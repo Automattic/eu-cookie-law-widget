@@ -3,7 +3,7 @@
 **************************************************************************
 
 Plugin Name:  EU Cookie Law widget
-Description:  Allows the display of a
+Description:  Allows the display of a banner for compliance with the EU Cookie Law
 Reference:    https://dotcom.wordpress.com/2015/06/10/developer-superhero-needed/
 Author:       Igor Zinovyey, Alex Kirk
 Author URI:   http://automattic.com/

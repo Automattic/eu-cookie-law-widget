@@ -1,30 +1,28 @@
 <div id="eu-cookie-law" class="hide-on-<?php echo esc_attr( $instance['hide'] ); ?>" data-hide-timeout="<?php echo intval( $instance['hide-timeout'] ) ; ?>">
 	<form action="<?php echo esc_attr( $blog_url ); ?>" method="post">
-		<div class="text">
-			<?php if ( $instance['text'] == 'default' || empty( $instance['customtext'] ) ) {
-				echo $defaults[ 'default-text' ];
+		<?php wp_nonce_field( 'eucookielaw' ); ?>
+		<input type="hidden" name="eucookielaw" value="accept" />
+		<input type="hidden" name="redirect_url" value="<?php echo esc_attr( $_SERVER['REQUEST_URI'] ) ?>" />
+		<input type="submit" value="<?php echo esc_attr( $instance['button'] ) ?>" class="accept" />
 
-				if ( $instance['hide'] === 'time' ) {
-					echo ' ';
-					printf( _n( 'This message will disappear after %s second.', 'This message will disappear after %s seconds.', $instance['hide-timeout'], 'eucookielaw' ), $instance['hide-timeout'] );
-				}
+		<?php if ( $instance['text'] == 'default' || empty( $instance['customtext'] ) ) {
+			echo $defaults[ 'default-text' ];
+		
+			if ( $instance['hide'] === 'time' ) {
 				echo ' ';
-				_e( 'To find out more, as well as how to remove or block these, see here:', 'eucookielaw' );
-				echo ' ';
-			} else {
-				echo esc_html( $instance['customtext'] ), ' ';
+			printf( _n( 'This message will disappear after %s second.', 'This message will disappear after %s seconds.', $instance['hide-timeout'], 'eucookielaw' ), $instance['hide-timeout'] );
 			}
-
-			?><a href="<?php echo esc_attr( $instance['policy-url'] == 'default' || empty( $instance['custom-policy-url'] ) ? $defaults['default-policy-url'] : $instance['custom-policy-url'] ); ?>"><?php
-				echo esc_html( $instance['policy-link-text'] );
-			?></a>
-
-			<?php wp_nonce_field( 'eucookielaw' ); ?>
-			<input type="hidden" name="eucookielaw" value="accept" />
-			<input type="hidden" name="redirect_url" value="<?php echo esc_attr( $_SERVER['REQUEST_URI'] ) ?>" />
-			<input type="submit" value="<?php echo esc_attr( $instance['button'] ) ?>" class="accept" />
-		</div>
-	</form>
+			echo ' ';
+			_e( 'To find out more, as well as how to remove or block these, see here:', 'eucookielaw' );
+			echo ' ';
+		} else {
+			echo esc_html( $instance['customtext'] ), ' ';
+		}
+		
+		?><a href="<?php echo esc_attr( $instance['policy-url'] == 'default' || empty( $instance['custom-policy-url'] ) ? $defaults['default-policy-url'] : $instance['custom-policy-url'] ); ?>"><?php
+		 echo esc_html( $instance['policy-link-text'] );
+		?></a>
+ </form>
 </div>
 
 <script type="text/javascript">
@@ -71,20 +69,19 @@ jQuery(function( $ ) {
 <style type="text/css">
 	#eu-cookie-law {
 		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: 8em;
+		bottom: 1em;
+		left: 1em;
+		right: 1em;
+		z-index: 1000;
+		font-size: 90%;
+		line-height: 1.4;
+		border: 1px solid #dedede;
+		padding: 10px 20px;
 		background-color: #fff;
-		padding: 2em;
-	}
-
-	#eu-cookie-law div.text {
-		margin-right: 30%;
 	}
 
 	#eu-cookie-law input.accept {
 		float: right;
-		margin-right: 3em;
+		margin-left: 5%;
 	}
 </style>

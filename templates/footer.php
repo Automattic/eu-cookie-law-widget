@@ -110,9 +110,9 @@ jQuery(function( $ ) {
 	* Using a highly-specific rule to make sure that all button styles
 	* will be reset
 	*/
-	#eu-cookie-law input.accept,
-	#eu-cookie-law input.accept:hover,
-	#eu-cookie-law input.accept:focus	 {
+	#eu-cookie-law input,
+	#eu-cookie-law input:hover,
+	#eu-cookie-law input:focus	 {
 		display: inline;
 		position: static;
 		float: right;
@@ -132,12 +132,24 @@ jQuery(function( $ ) {
 		font-family: inherit;
 	}
 
-	#eu-cookie-law.negative input.accept,
-	#eu-cookie-law.negative input.accept:hover,
-	#eu-cookie-law.negative input.accept:focus {
+	#eu-cookie-law.negative input,
+	#eu-cookie-law.negative input:hover,
+	#eu-cookie-law.negative input:focus {
 		background-color: #282828;
 		color: #fff;
 		border-color: #535353;
+	}
+
+	@media (max-width: 600px) {
+		#eu-cookie-law {
+		    padding-bottom: 55px;
+		}
+
+		#eu-cookie-law input.accept {
+			position: absolute;
+			bottom: 8px;
+			right: 8px;
+		}
 	}
 
 </style>

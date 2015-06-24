@@ -18,7 +18,7 @@
 				echo ' ';
 			printf( _n( 'This message will disappear after %s second.', 'This message will disappear after %s seconds.', $instance['hide-timeout'], 'eucookielaw' ), $instance['hide-timeout'] );
 			}
-			echo ' ';
+			?><br /><?php
 			_e( 'To find out more, as well as how to remove or block these, see here:', 'eucookielaw' );
 			echo ' ';
 		} else {
@@ -79,11 +79,25 @@ jQuery(function( $ ) {
 		left: 1em;
 		right: 1em;
 		z-index: 1000;
-		font-size: 80%;
-		line-height: 1.4;
+		font-size: 12px;
+		color: #2e4467;
+		line-height: 1.5;
 		border: 1px solid #dedede;
 		padding: 6px 6px 6px 15px;
 		background-color: #fff;
+	}
+
+	#eu-cookie-law a,
+	#eu-cookie-law a:active,
+	#eu-cookie-law a:visited {
+		color: inherit;
+		text-decoration: underline;
+		cursor: inherit;
+	}
+
+	#eu-cookie-law a:hover {
+		text-decoration: none;
+		cursor: pointer;
 	}
 
 	#eu-cookie-law.negative {
@@ -92,8 +106,38 @@ jQuery(function( $ ) {
 		border: none;
 	}
 
-	#eu-cookie-law input.accept {
+	/**
+	* Using a highly-specific rule to make sure that all button styles
+	* will be reset
+	*/
+	#eu-cookie-law input.accept,
+	#eu-cookie-law input.accept:hover,
+	#eu-cookie-law input.accept:focus	 {
+		display: inline;
+		position: static;
 		float: right;
-		margin-left: 5%;
+		padding: 8px 12px;
+		margin: 0 0 0 5%;
+		border: 1px solid #dedede;
+		border-radius: 4px;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		background: #f3f3f3;
+		font-size: 14px;
+		line-height: inherit;
+		text-transform: none;
+		color: #2e4453;
+		cursor: pointer;
+		font-weight: inherit;
+		font-family: inherit;
 	}
+
+	#eu-cookie-law.negative input.accept,
+	#eu-cookie-law.negative input.accept:hover,
+	#eu-cookie-law.negative input.accept:focus {
+		background-color: #282828;
+		color: #fff;
+		border-color: #535353;
+	}
+
 </style>

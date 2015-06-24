@@ -32,6 +32,7 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 			'hide-timeout' => 30,
 			'text' => 'default',
 			'customtext' => '',
+			'color-scheme' => 'default',
 			'policy-url' => 'default',
 			'default-policy-url' => 'https://en.support.wordpress.com/cookies',
 			'custom-policy-url' => '',
@@ -84,6 +85,12 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 			$instance['customtext'] = mb_substr( $new_instance['customtext'], 0, 4096 );
 		} else {
 			$instance['text'] = 'default';
+		}
+
+		if ( isset( $new_instance['color-scheme'] ) ) {
+			$instance['color-scheme'] = 'negative' === $new_instance['color-scheme'] ? 'negative' : 'default';
+		} else {
+			$instance['color-scheme'] = 'default';
 		}
 
 		if ( in_array( $new_instance['policy-url'], array( 'default', 'custom' ) ) ) {

@@ -1,4 +1,10 @@
-<div id="eu-cookie-law" class="hide-on-<?php echo esc_attr( $instance['hide'] ); ?>" data-hide-timeout="<?php echo intval( $instance['hide-timeout'] ) ; ?>">
+<div
+	id="eu-cookie-law"
+	class="<?php
+		echo 'negative' === $instance['color-scheme'] ? 'negative ' : ''
+	?>hide-on-<?php echo esc_attr( $instance['hide'] ); ?>"
+	data-hide-timeout="<?php echo intval( $instance['hide-timeout'] ) ; ?>"
+>
 	<form action="<?php echo esc_attr( $blog_url ); ?>" method="post">
 		<?php wp_nonce_field( 'eucookielaw' ); ?>
 		<input type="hidden" name="eucookielaw" value="accept" />
@@ -73,11 +79,17 @@ jQuery(function( $ ) {
 		left: 1em;
 		right: 1em;
 		z-index: 1000;
-		font-size: 90%;
+		font-size: 80%;
 		line-height: 1.4;
 		border: 1px solid #dedede;
-		padding: 10px 20px;
+		padding: 6px 6px 6px 15px;
 		background-color: #fff;
+	}
+
+	#eu-cookie-law.negative {
+		background-color: #000;
+		color: #fff;
+		border: none;
 	}
 
 	#eu-cookie-law input.accept {

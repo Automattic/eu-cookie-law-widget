@@ -27,6 +27,18 @@
 </p>
 <hr />
 <p>
+	<strong><?php _e( 'Color scheme', 'eucookielaw' ); ?></strong>
+	<ul>
+		<li>
+			<label><input type="radio" name="<?php echo $this->get_field_name( 'color-scheme' ); ?>" value="default" <?php checked( $instance['color-scheme'], 'default' ); ?> /> <?php _e( 'Default' ); ?></label>
+		</li>
+		<li>
+			<label><input type="radio" name="<?php echo $this->get_field_name( 'color-scheme' ); ?>" value="negative" <?php checked( $instance['color-scheme'], 'negative' ); ?> /> <?php _e( 'Inverted' ); ?></label>
+		</li>
+	</ul>
+</p>
+<hr />
+<p>
 	<strong><?php _e( 'Policy URL', 'eucookielaw' ); ?></strong>
 	<ul>
 		<li>

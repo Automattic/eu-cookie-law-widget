@@ -38,7 +38,7 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 			'custom-policy-url' => '',
 			'policy-link-text' => __( 'Our Cookie Policy', 'eucookielaw' ),
 			'button' => __( 'Close and accept', 'eucookielaw' ),
-			'default-text' => __('Privacy & Cookies: This site uses cookies from WordPress.com and selected partners. By browsing you consent to their use.', 'eucookielaw' ),
+			'default-text' => __('Privacy & Cookies: This site uses cookies from WordPress.com and selected partners. ', 'eucookielaw' ),
 		);
 	}
 

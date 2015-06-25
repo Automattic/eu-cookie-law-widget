@@ -1,4 +1,4 @@
-w<p>
+<p>
 	<strong><?php echo _x( 'Hide the banner', 'action', 'eucookielaw' ); ?></strong>
 	<ul>
 		<li>

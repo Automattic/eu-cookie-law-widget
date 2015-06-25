@@ -13,7 +13,7 @@
 
 		<?php if ( $instance['text'] == 'default' || empty( $instance['customtext'] ) ) {
 			echo $defaults[ 'default-text' ];
-		
+
 			if ( $instance['hide'] === 'time' ) {
 				echo ' ';
 			printf( _n( 'This message will disappear after %s second.', 'This message will disappear after %s seconds.', $instance['hide-timeout'], 'eucookielaw' ), $instance['hide-timeout'] );
@@ -24,9 +24,9 @@
 		} else {
 			echo esc_html( $instance['customtext'] ), ' ';
 		}
-		
+
 		?><a href="<?php echo esc_attr( $instance['policy-url'] == 'default' || empty( $instance['custom-policy-url'] ) ? $defaults['default-policy-url'] : $instance['custom-policy-url'] ); ?>"><?php
-		 echo esc_html( $instance['policy-link-text'] );
+		echo esc_html( $instance['policy-link-text'] );
 		?></a>
  </form>
 </div>
@@ -112,7 +112,7 @@ jQuery(function( $ ) {
 	*/
 	#eu-cookie-law input,
 	#eu-cookie-law input:hover,
-	#eu-cookie-law input:focus	 {
+	#eu-cookie-law input:focus {
 		display: inline;
 		position: static;
 		float: right;
@@ -142,7 +142,7 @@ jQuery(function( $ ) {
 
 	@media (max-width: 600px) {
 		#eu-cookie-law {
-		    padding-bottom: 55px;
+			padding-bottom: 55px;
 		}
 
 		#eu-cookie-law input.accept {

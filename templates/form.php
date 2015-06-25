@@ -1,4 +1,4 @@
-<p>
+w<p>
 	<strong><?php echo _x( 'Hide the banner', 'action', 'eucookielaw' ); ?></strong>
 	<ul>
 		<li>
@@ -30,10 +30,10 @@
 	<strong><?php _e( 'Color scheme', 'eucookielaw' ); ?></strong>
 	<ul>
 		<li>
-			<label><input type="radio" name="<?php echo $this->get_field_name( 'color-scheme' ); ?>" value="default" <?php checked( $instance['color-scheme'], 'default' ); ?> /> <?php _e( 'Default' ); ?></label>
+			<label><input type="radio" name="<?php echo $this->get_field_name( 'color-scheme' ); ?>" value="default" <?php checked( $instance['color-scheme'], 'default' ); ?> /> <?php _ex( 'Light', 'noun, defines the color scheme of the widget having light colors', 'eucookielaw' ); ?></label>
 		</li>
 		<li>
-			<label><input type="radio" name="<?php echo $this->get_field_name( 'color-scheme' ); ?>" value="negative" <?php checked( $instance['color-scheme'], 'negative' ); ?> /> <?php _e( 'Inverted' ); ?></label>
+		<label><input type="radio" name="<?php echo $this->get_field_name( 'color-scheme' ); ?>" value="negative" <?php checked( $instance['color-scheme'], 'negative' ); ?> /> <?php _ex( 'Dark', 'noun, defines the color scheme of the widget having dark colors', 'eucookielaw' ); ?></label>
 		</li>
 	</ul>
 </p>

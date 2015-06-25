@@ -78,7 +78,7 @@ jQuery(function( $ ) {
 		bottom: 1em;
 		left: 1em;
 		right: 1em;
-		z-index: 1000;
+		z-index: 6000;
 		font-size: 12px;
 		color: #2e4467;
 		line-height: 1.5;

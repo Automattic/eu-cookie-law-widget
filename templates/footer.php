@@ -13,11 +13,6 @@
 
 		<?php if ( $instance['text'] == 'default' || empty( $instance['customtext'] ) ) {
 			echo $defaults[ 'default-text' ];
-
-			if ( $instance['hide'] === 'time' ) {
-				echo ' ';
-			printf( _n( 'This message will disappear after %s second.', 'This message will disappear after %s seconds.', $instance['hide-timeout'], 'eucookielaw' ), $instance['hide-timeout'] );
-			}
 			?><br /><?php
 			_e( 'To find out more, as well as how to remove or block these, see here:', 'eucookielaw' );
 			echo ' ';

@@ -156,11 +156,6 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 // their consent to accept cookies
 if ( is_admin() || empty( $_COOKIE[ EU_Cookie_Law_Widget::$cookie_name ] ) ) {
 	add_action( 'widgets_init', function() {
-		if ( ! is_automattician() ) {
-			// only available for a12s for the moment
-			return;
-		}
-
 		register_widget( 'EU_Cookie_Law_Widget' );
 	});
 

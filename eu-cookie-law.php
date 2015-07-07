@@ -148,7 +148,7 @@ class EU_Cookie_Law_Widget extends WP_Widget {
 		// Cookie is valid for 30 days, so the user will be shown the banner again after 30 days
 		setcookie( self::$cookie_name, current_time( 'timestamp' ), time() + self::$cookie_validity, '/' );
 
-		wp_safe_redirect( $_POST['redirect_url'] );
+		wp_safe_redirect( wp_get_referer() );
 	}
 }
 

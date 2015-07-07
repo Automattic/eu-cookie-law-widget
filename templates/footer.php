@@ -45,11 +45,15 @@ jQuery(function( $ ) {
 	}
 
 	var accepted = false;
-	function accept() {
+	function accept( event ) {
 		if ( accepted ) {
 			return;
 		}
 		accepted = true;
+
+		if ( event && event.preventDefault ) {
+			event.preventDefault();
+		}
 
 		if ( overlay.hasClass( 'hide-on-scroll' ) ) {
 			$( window ).off( 'scroll', scrollFunction );

@@ -29,13 +29,11 @@
 <script type="text/javascript">
 jQuery(function( $ ) {
 	var overlay = $( '#eu-cookie-law' ), initialScrollPosition, scrollFunction;
-	if ( overlay.hasClass( 'hide-on-button' ) ) {
-		overlay.find( 'input.accept' ).on( 'click', accept );
-	} else if ( overlay.hasClass( 'hide-on-scroll' ) ) {
+	overlay.find( 'form' ).on( 'submit', accept );
+	if ( overlay.hasClass( 'hide-on-scroll' ) ) {
 		initialScrollPosition = $( window ).scrollTop();
 		scrollFunction = function() {
 			if ( Math.abs( $( window ).scrollTop() - initialScrollPosition ) > 50 ) {
-				console.log($( window ).scrollTop() - initialScrollPosition);
 				accept();
 			}
 		};
@@ -60,7 +58,7 @@ jQuery(function( $ ) {
 		}
 
 		var expireTime = new Date();
-		expireTime.setTime( expireTime.getTime() + <?php echo $cookie_validity; ?> ); // 30 days
+		expireTime.setTime( expireTime.getTime() + <?php echo $cookie_validity; ?> );
 
 		document.cookie = '<?php echo $cookie_name; ?>=' + expireTime.getTime() + ';path=/;expires=' + expireTime.toGMTString();
 

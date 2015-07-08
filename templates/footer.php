@@ -5,7 +5,7 @@
 	?>hide-on-<?php echo esc_attr( $instance['hide'] ); ?>"
 	data-hide-timeout="<?php echo intval( $instance['hide-timeout'] ) ; ?>"
 >
-	<form action="<?php echo esc_attr( $blog_url ); ?>" method="post">
+	<form method="post">
 		<?php wp_nonce_field( 'eucookielaw' ); ?>
 		<input type="hidden" name="eucookielaw" value="accept" />
 		<input type="hidden" name="redirect_url" value="<?php echo esc_attr( $_SERVER['REQUEST_URI'] ) ?>" />
